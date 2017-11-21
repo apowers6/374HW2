@@ -13,6 +13,7 @@ import java.util.Collection;
 public class PrimeNumberCounter {
 
     private long currentCount = 0L;
+    private Semaphore semaphore;
 
     /*
      * you may not modify this method
@@ -69,7 +70,7 @@ private void findPrimeValues(SimpleQueue<Long> valuesToCheck, SimpleQueue<Long> 
            
           if (current!=null){
                 if(current%1000000==0) {
-                    System.out.println(current); //iterating up by 1000000, checking for primes, 
+                    System.out.println(current); 
                 }
 
 	 if(Number.IsPrime(current)) {
@@ -89,7 +90,7 @@ private void findPrimeValues(SimpleQueue<Long> valuesToCheck, SimpleQueue<Long> 
             currentCount++;
             
             if(currentCount % 1000000 == 0) {
-                System.out.println("have " + currentCount + " prime values");
+                System.out.println("The above values have " + currentCount + " prime values.");
                 System.out.flush(); 
             }
        }
