@@ -8,8 +8,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /*
+
+Abby Powers- Homework #2- COMP 374 Fall 2017
+
  * you may not use anything in java.util.concurrent.* you may only use locks from osdi.locks.*
  */
+
 public class PrimeNumberCounter {
 
     private long currentCount = 0L;
@@ -53,23 +57,27 @@ public class PrimeNumberCounter {
         
         startThreads(valuesToCheck, valuesThatArePrime);
 
+
         for(Long value : range) {
             valuesToCheck.enqueue(value);
         }
  
         return currentCount;
     }
+	
+
 
     /*
      * you may modify this method
      */
 
 private void findPrimeValues(SimpleQueue<Long> valuesToCheck, SimpleQueue<Long> valuesThatArePrime) {
-        while(true) {
+         while(true) {
             Long current = valuesToCheck.dequeue();
            
-          if (current!=null){
-                if(current%1000000==0) {
+         if (current!=null){
+               
+	    if(current%1000000==0) {
                     System.out.println(current); 
                 }
 
@@ -78,7 +86,9 @@ private void findPrimeValues(SimpleQueue<Long> valuesToCheck, SimpleQueue<Long> 
           } 
        }   
     }
-  }
+}
+
+  
 
     /*
      * you may modify this method
@@ -90,7 +100,7 @@ private void findPrimeValues(SimpleQueue<Long> valuesToCheck, SimpleQueue<Long> 
             currentCount++;
             
             if(currentCount % 1000000 == 0) {
-                System.out.println("The above values have " + currentCount + " prime values.");
+                System.out.println("The above range have " + currentCount + " prime values.");
                 System.out.flush(); 
             }
        }

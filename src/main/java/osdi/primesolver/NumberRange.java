@@ -3,7 +3,6 @@ package osdi.primesolver;
 
 import java.util.Iterator;
 
-//something
 
 
  /* You may modify this as you see fit. You may not use anything in java.util.concurrent.* you may only use locks from osdi.locks.*
@@ -19,6 +18,8 @@ public class NumberRange implements Iterable<Long> {
         if(maxValue <= startValue) {
             throw new IllegalStateException("start value < max value");
         }
+	
+	
         this.startValue = startValue;
         this.maxValue = maxValue;
     }
@@ -26,8 +27,8 @@ public class NumberRange implements Iterable<Long> {
     @Override
     public Iterator<Long> iterator() {
         return new NumberIterator(startValue, maxValue);
-    }
-
+     }
+    
     private static class NumberIterator implements Iterator<Long> {
         private final long maxValue;
         private long currentValue;
@@ -41,16 +42,18 @@ public class NumberRange implements Iterable<Long> {
         public boolean hasNext() {
             return currentValue <= maxValue;
         }
+    
 
         @Override
         public Long next() {
             return (currentValue <= maxValue) ? currentValue++ : Long.MIN_VALUE;
         }
-    }
-
+    
+}
   public long size() {
     	return maxValue-startValue;
     }
 }
+
 
 

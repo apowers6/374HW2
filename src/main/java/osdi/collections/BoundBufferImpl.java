@@ -4,8 +4,10 @@ import osdi.locks.*;
 import java.util.ArrayDeque;
 
 
-
 /*
+
+Abby Powers- Homework #2- COMP 374 Fall 2017
+
 Modify this as you see fit. you may not use anything in java.util.concurrent.* you may only use locks from osdi.locks.
 */
 
@@ -27,16 +29,18 @@ class BoundBufferImpl<T> implements SimpleQueue<T> {
     }
 
   @Override
-    public void enqueue(T item) {
+    public void enqueue(T item) {	
 
         while (queue.size() == bufferSize) {
                empty.down();
 	}
+	
 	mutex.lock();
 	if (item != null) {
             queue.add(item);
-        }
-        mutex.unlock();
+	}
+	
+	mutex.unlock();
 	full.up();
     }
 
@@ -47,12 +51,14 @@ class BoundBufferImpl<T> implements SimpleQueue<T> {
         
 	while(queue.isEmpty()){
                full.down();
-        }
+	}
         mutex.lock();
+	
 	if(!queue.isEmpty()) {
             item = queue.remove();
-        }
-        mutex.unlock();
+	}
+	mutex.unlock();
+	
 	empty.up();
         return item;
     }
